@@ -23,10 +23,17 @@ else
     disp('Port not specified. Using default: 6350.');
     portNumber = 6350;
 end 
+% socket buffer size 
+if sum(ismember(fieldnames(props),'socketBacklog')) > 0
+    socketBacklog = props.socketBacklog;
+else
+    disp('Maximum Socket Backlog not specified. Using default: 50.');
+    socketBacklog = 50;
+end 
 
 %% Establish connection on specified port
 try 
-    serverSocket = ServerSocket(portNumber);
+    serverSocket = ServerSocket(portNumber,socketBacklog);
 catch 
     disp(['Could not listen on port: ', int2str(portNumber) ]);
     return;

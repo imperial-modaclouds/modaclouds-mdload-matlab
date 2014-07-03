@@ -24,3 +24,7 @@ port = prop.get('port');
 if ~isempty(port) 
     props.port = str2num(port);
 end
+socketBacklog = prop.get('socketBacklog');
+if ~isempty(socketBacklog) 
+    props.socketBacklog = str2num(socketBacklog);
+end
