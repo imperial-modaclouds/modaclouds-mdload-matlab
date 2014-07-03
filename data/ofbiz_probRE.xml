@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<randomEnvironmentExtensions>
+<environment numStages="3" envID="e1"> 
+ <stage name="SU" meanTime="10">
+ 	<transition destName="LC" prob="0.5">
+ 	 <resetRule ruleName="noReset"/>
+ 	</transition>
+ 	<transition destName="HC" prob="0.5">
+ 	 <resetRule ruleName="noReset"/>
+ 	</transition> 
+ </stage>
+ <stage name="LC" meanTime="100">
+  <transition destName="HC" prob="1" >
+   <resetRule ruleName="noReset"/>
+  </transition>
+ </stage>
+ <stage name="HC" meanTime="200">
+  <transition destName="LC" prob="1">
+   <resetRule ruleName="noReset"/>
+  </transition>
+ </stage>
+</environment>
+
+
+<envParameter id="FrontEnd_CPU_Processor" paramName="speed-factor" envID="e1">
+	<envValue stage="LC" factor="1"/>
+	<envValue stage="HC" factor="5"/>
+	<envValue stage="SU" factor="0.2"/>
+</envParameter>	
+
+</randomEnvironmentExtensions>
